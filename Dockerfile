@@ -1,6 +1,4 @@
 FROM minio/mc:latest
-RUN mkdir /.mc
-RUN chgrp -R 0 /.mc && \
-    chmod -R g=u  /.mc
-
-ENTRYPOINT ["mc"]
+COPY entrypoint.sh /entrypoint.sh
+RUN chmod +x /entrypoint.sh
+ENTRYPOINT ["/entrypoint.sh"]
